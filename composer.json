@@ -15,18 +15,18 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "CmdrSharp\\GuzzleApi\\": "src"
+      "Cmdrsharp\\GuzzleApi\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "CmdrSharp\\GuzzleApi\\Tests\\": "tests"
+      "Cmdrsharp\\GuzzleApi\\Tests\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "CmdrSharp\\GuzzleApi\\GuzzleApiServiceProvider"
+        "Cmdrsharp\\GuzzleApi\\GuzzleApiServiceProvider"
       ]
     }
   },
