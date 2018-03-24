@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace CmdrSharp\GuzzleWrapper;
+namespace CmdrSharp\GuzzleApi;
 
 use Illuminate\Support\ServiceProvider;
 
-class GuzzleWrapperServiceProvider extends ServiceProvider
+class GuzzleApiServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -24,6 +24,6 @@ class GuzzleWrapperServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(ClientInterface::class, Client::class);
+        $this->app->bind(RequestInterface::class, Client::class);
     }
 }
