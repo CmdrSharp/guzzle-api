@@ -207,6 +207,20 @@ class Client implements RequestInterface
     }
 
     /**
+     * Send a Request, specifying the method.
+     *
+     * @return ResponseInterface
+     */
+    public function request(string $method): ResponseInterface
+    {
+        if (!in_array(strtolower($method), ['get', 'post', 'put', 'patch', 'delete'])) {
+            throw new Exception('The specified method must be either GET, POST, PUT, PATCH or DELETE');
+        }
+
+        return $this->makeRequest($method);
+    }
+
+    /**
      * Sends the request.
      *
      * @param string $method
