@@ -84,4 +84,9 @@ interface RequestInterface
      * @return ResponseInterface
      */
     public function delete(): ResponseInterface;
+
+    /**
+     * @return ResponseInterface
+     */
+    public function request(string $method): ResponseInterface;
 }
