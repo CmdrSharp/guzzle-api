@@ -1,5 +1,6 @@
 # About
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Build Status](https://travis-ci.org/CmdrSharp/guzzle-api.svg?branch=master)](https://travis-ci.org/CmdrSharp/guzzle-api)
 
 This is an API for GuzzleHTTP. It aims to make using Guzzle a bit more clean and extends reusability.
 
