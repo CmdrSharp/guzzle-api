@@ -31,6 +31,33 @@ class GuzzleApiTest extends TestCase
     }
 
     /** @test */
+    function a_valid_request_is_working()
+    {
+        $response = $this->client->to('anything')->withBody([
+            'foo' => 'bar',
+            'baz' => 'qux'
+        ])->asJson()->request('get')->getBody();
+
+        $this->assertArraySubset([
+            'json' => [
+                'foo' => 'bar',
+                'baz' => 'qux'
+            ],
+        ], (array)json_decode($response, true));
+    }
+
+    /** @test */
+    function an_invalid_request_throws_exception()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->client->to('anything')->withBody([
+            'foo' => 'bar',
+            'baz' => 'qux'
+        ])->asJson()->request('foobar')->getBody();
+    }
+
+    /** @test */
     function can_retrieve_the_raw_response_body()
     {
         $response = $this->client->to('robots.txt')->get()->getBody();
