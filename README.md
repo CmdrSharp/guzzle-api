@@ -1,6 +1,8 @@
 # About
 [![Latest Stable Version](https://poser.pugx.org/cmdrsharp/guzzle-api/v/stable)](https://packagist.org/packages/cmdrsharp/guzzle-api)
 [![Build Status](https://travis-ci.org/CmdrSharp/guzzle-api.svg?branch=master)](https://travis-ci.org/CmdrSharp/guzzle-api)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/CmdrSharp/guzzle-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/CmdrSharp/guzzle-api/?branch=master)
+[![StyleCI](https://styleci.io/repos/126625030/shield?branch=master)](https://styleci.io/repos/126625030)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 This is an API for GuzzleHTTP. It aims to make using Guzzle a bit more clean and extends reusability.
