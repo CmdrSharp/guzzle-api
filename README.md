@@ -8,8 +8,8 @@
 This is an API for GuzzleHTTP. It aims to make using Guzzle a bit more clean and extends reusability.
 
 # Requirements
-* PHP 7.1 or higher
-* Laravel [5.5](https://laravel.com/docs/5.5) or [5.6](https://laravel.com/docs/5.6)
+* PHP 7.1 - PHP 7.2
+* Laravel [5.5](https://laravel.com/docs/5.5), [5.6](https://laravel.com/docs/5.6) or [5.7](https://laravel.com/docs/5.7)
 
 # Installation
 Via composer

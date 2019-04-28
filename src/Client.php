@@ -17,11 +17,11 @@ class Client implements RequestInterface
     /** @var null|array */
     protected $body;
 
-    /** @var null|array */
-    protected $headers;
+    /** @var array */
+    protected $headers = [];
 
-    /** @var null|array */
-    protected $options;
+    /** @var array */
+    protected $options = [];
 
     /** @var string */
     protected $format = 'json';
