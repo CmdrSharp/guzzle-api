@@ -65,7 +65,7 @@ class GuzzleApiTest extends TestCase
     function can_retrieve_the_raw_response_body()
     {
         $response = $this->client->to('robots.txt')->get()->getBody();
-        $this->assertContains('User-agent: *', (string)$response);
+        $this->assertStringContainsStringIgnoringCase('User-agent: *', (string)$response);
     }
 
     /** @test */
