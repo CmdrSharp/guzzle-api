@@ -8,7 +8,7 @@ class GuzzleApiTest extends TestCase
     /** @var GuzzleClient */
     protected $client;
 
-    public function setUp()
+    public function setUp(): void
     {
         $client = new GuzzleClient();
         $this->client = $client->make('https://httpbin.org');
