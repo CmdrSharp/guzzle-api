@@ -170,11 +170,11 @@ class GuzzleApiTest extends TestCase
     /** @test */
     function can_get_options()
     {
-        $otions = $this->client->withOptions([
+        $options = $this->client->withOptions([
             'Foo' => 'Bar',
         ])->getOptions();
 
-        Assert::assertEquals($options, ['Foo' => 'Bar']);
+        $this->assertEquals($options, ['Foo' => 'Bar']);
     }
 
     /** @test */
