@@ -66,12 +66,12 @@ class Client implements RequestInterface
     /**
      * Specify the payload.
      *
-     * @param array|null $body
-     * @param array|null $headers
-     * @param array|null $options
+     * @param array $body
+     * @param array $headers
+     * @param array $options
      * @return RequestInterface
      */
-    public function with(?array $body = null, ?array $headers = null, ?array $options = null): RequestInterface
+    public function with(array $body = [], array $headers = [], array $options = []): RequestInterface
     {
         $this->body = $body;
         $this->headers = $headers;
@@ -83,10 +83,10 @@ class Client implements RequestInterface
     /**
      * Specify the body for the request.
      *
-     * @param array|null $body
+     * @param array $body
      * @return RequestInterface
      */
-    public function withBody(?array $body = null): RequestInterface
+    public function withBody(array $body = []): RequestInterface
     {
         $this->body = $body;
 
@@ -94,12 +94,35 @@ class Client implements RequestInterface
     }
 
     /**
-     * Specify the headers for the request.
+     * Append to existing body.
      *
-     * @param array|null $headers
+     * @param array $body
      * @return RequestInterface
      */
-    public function withHeaders(?array $headers = null): RequestInterface
+    public function addBody(array $body = []): RequestInterface
+    {
+        $this->body = array_merge($this->body, $body);
+
+        return $this;
+    }
+
+    /**
+     * Get existing body.
+     *
+     * @return array
+     */
+    public function getBody(): array
+    {
+        return $this->body;
+    }
+
+    /**
+     * Specify the headers for the request.
+     *
+     * @param array $headers
+     * @return RequestInterface
+     */
+    public function withHeaders(array $headers = []): RequestInterface
     {
         $this->headers = $headers;
 
@@ -107,16 +130,62 @@ class Client implements RequestInterface
     }
 
     /**
-     * Specify the options for the request.
+     * Append to existing headers.
      *
-     * @param array|null $options
+     * @param array $headers
      * @return RequestInterface
      */
-    public function withOptions(?array $options = null): RequestInterface
+    public function addHeaders(array $headers = []): RequestInterface
+    {
+        $this->headers = array_merge($this->headers, $headers);
+
+        return $this;
+    }
+
+    /**
+     * Get existing headers.
+     *
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Specify the options for the request.
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function withOptions(array $options = []): RequestInterface
     {
         $this->options = $options;
 
         return $this;
+    }
+
+    /**
+     * Append to existing options.
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function addOptions(array $options = []): RequestInterface
+    {
+        $this->options = array_merge($this->options, $options);
+
+        return $this;
+    }
+
+    /**
+     * Get existing options.
+     *
+     * @return array
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 
     /**
@@ -231,7 +300,7 @@ class Client implements RequestInterface
         $requestParameters = [
             $this->format => $this->body,
             'headers' => $this->headers,
-            'debug' => $this->debug
+            'debug' => $this->debug,
         ];
 
         if ($this->options !== null) {

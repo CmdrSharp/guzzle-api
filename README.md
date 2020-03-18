@@ -21,14 +21,14 @@ $ composer require cmdrsharp/guzzle-api
 Inject the contract into the class where you need the client:
 ```php
 /**
- * @var RequestClientContract
+ * @var RequestInterface
  */
 protected $client;
 
 /**
- * @param ClientContract $client
+ * @param Client $client
  */
-public function __construct(ClientContract $client)
+public function __construct(Client $client)
 {
     $this->client = $client;
 }

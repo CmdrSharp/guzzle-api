@@ -19,30 +19,63 @@ interface RequestInterface
     public function to(string $uri): RequestInterface;
 
     /**
-     * @param array|null $body
-     * @param array|null $headers
-     * @param array|null $options
+     * @param array $body
+     * @param array $headers
+     * @param array $options
      * @return RequestInterface
      */
-    public function with(?array $body = null, ?array $headers = null, ?array $options = null): RequestInterface;
+    public function with(array $body = [], array $headers = [], array $options = []): RequestInterface;
 
     /**
-     * @param array|null $body
+     * @param array $body
      * @return RequestInterface
      */
-    public function withBody(?array $body = null): RequestInterface;
+    public function withBody(array $body = []): RequestInterface;
 
     /**
-     * @param array|null $headers
+     * @param array $body
      * @return RequestInterface
      */
-    public function withHeaders(?array $headers = null): RequestInterface;
+    public function addBody(array $body = []): RequestInterface;
 
     /**
-     * @param array|null $options
+     * @return array
+     */
+    public function getBody(): array;
+
+    /**
+     * @param array $headers
      * @return RequestInterface
      */
-    public function withOptions(?array $options = null): RequestInterface;
+    public function withHeaders(array $headers = []): RequestInterface;
+
+    /**
+     * @param array $headers
+     * @return RequestInterface
+     */
+    public function addHeaders(array $headers = []): RequestInterface;
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array;
+
+    /**
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function withOptions(array $options = []): RequestInterface;
+
+    /**
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function addOptions(array $options = []): RequestInterface;
+
+    /**
+     * @return array
+     */
+    public function getOptions(): array;
 
     /**
      * @return RequestInterface

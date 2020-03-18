@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class GuzzleApiTest extends TestCase
 {
     use ArraySubsetAsserts;
-    
+
     /** @var GuzzleClient */
     protected $client;
 
@@ -23,13 +23,13 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('anything')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->get()->getBody();
 
         Assert::assertArraySubset([
             'json' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
+                'baz' => 'qux',
             ],
         ], (array)json_decode($response, true));
     }
@@ -39,13 +39,13 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('anything')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->request('get')->getBody();
 
         Assert::assertArraySubset([
             'json' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
+                'baz' => 'qux',
             ],
         ], (array)json_decode($response, true));
     }
@@ -57,7 +57,7 @@ class GuzzleApiTest extends TestCase
 
         $this->client->to('anything')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->request('foobar')->getBody();
     }
 
@@ -76,8 +76,8 @@ class GuzzleApiTest extends TestCase
         Assert::assertArraySubset([
             'args' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
-            ]
+                'baz' => 'qux',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -85,16 +85,16 @@ class GuzzleApiTest extends TestCase
     function query_parameters_in_urls_can_be_sent_together_with_array_parameters()
     {
         $response = $this->client->to('anything?foo=bar')->withBody([
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->get()->getBody();
 
         Assert::assertArraySubset([
             'args' => [
-                'foo' => 'bar'
+                'foo' => 'bar',
             ],
             'json' => [
-                'baz' => 'qux'
-            ]
+                'baz' => 'qux',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -103,17 +103,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('post')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->post()->getBody();
 
         Assert::assertArraySubset([
             'json' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
+                'baz' => 'qux',
             ],
             'headers' => [
-                'Content-Type' => 'application/json'
-            ]
+                'Content-Type' => 'application/json',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -122,17 +122,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('post')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asFormParams()->post()->getBody();
 
         Assert::assertArraySubset([
             'form' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
+                'baz' => 'qux',
             ],
             'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded'
-            ]
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -140,27 +140,54 @@ class GuzzleApiTest extends TestCase
     function get_with_additional_headers()
     {
         $response = $this->client->to('get')->withHeaders([
-            'Custom' => 'Header'
+            'Custom' => 'Header',
         ])->asJson()->get()->getBody();
 
         Assert::assertArraySubset([
             'headers' => [
-                'Custom' => 'Header'
-            ]
+                'Custom' => 'Header',
+            ],
         ], (array)json_decode($response, true));
+    }
+
+    /** @test */
+    function get_with_appended_headers()
+    {
+        $response = $this->client->to('get')->withHeaders([
+            'Custom' => 'Header',
+        ])->addHeaders([
+            'Custom2' => 'Header2',
+        ])->asJson()->get()->getBody();
+
+        Assert::assertArraySubset([
+            'headers' => [
+                'Custom' => 'Header',
+                'Custom2' => 'Header2',
+            ],
+        ], (array)json_decode($response, true));
+    }
+
+    /** @test */
+    function can_get_options()
+    {
+        $otions = $this->client->withOptions([
+            'Foo' => 'Bar',
+        ])->getOptions();
+
+        Assert::assertEquals($options, ['Foo' => 'Bar']);
     }
 
     /** @test */
     function post_with_additional_headers()
     {
         $response = $this->client->to('post')->withHeaders([
-            'Custom' => 'Header'
+            'Custom' => 'Header',
         ])->asJson()->post()->getBody();
 
         Assert::assertArraySubset([
             'headers' => [
-                'Custom' => 'Header'
-            ]
+                'Custom' => 'Header',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -169,14 +196,14 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('patch')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->patch()->getBody();
 
         Assert::assertArraySubset([
             'json' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
-            ]
+                'baz' => 'qux',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -185,14 +212,14 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('put')->withBody([
             'foo' => 'bar',
-            'baz' => 'qux'
+            'baz' => 'qux',
         ])->asJson()->put()->getBody();
 
         Assert::assertArraySubset([
             'json' => [
                 'foo' => 'bar',
-                'baz' => 'qux'
-            ]
+                'baz' => 'qux',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -203,8 +230,8 @@ class GuzzleApiTest extends TestCase
 
         Assert::assertArraySubset([
             'args' => [
-                'id' => 1
-            ]
+                'id' => 1,
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -213,17 +240,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('post?foo=bar')->withBody([
             'lorem' => 'ipsum',
-            'bacon' => 'sandwich'
+            'bacon' => 'sandwich',
         ])->asJson()->post()->getbody();
 
         Assert::assertArraySubset([
             'args' => [
-                'foo' => 'bar'
+                'foo' => 'bar',
             ],
             'json' => [
                 'lorem' => 'ipsum',
-                'bacon' => 'sandwich'
-            ]
+                'bacon' => 'sandwich',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -232,17 +259,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('patch?foo=bar')->withBody([
             'lorem' => 'ipsum',
-            'bacon' => 'sandwich'
+            'bacon' => 'sandwich',
         ])->asJson()->patch()->getbody();
 
         Assert::assertArraySubset([
             'args' => [
-                'foo' => 'bar'
+                'foo' => 'bar',
             ],
             'json' => [
                 'lorem' => 'ipsum',
-                'bacon' => 'sandwich'
-            ]
+                'bacon' => 'sandwich',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -251,17 +278,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('put?foo=bar')->withBody([
             'lorem' => 'ipsum',
-            'bacon' => 'sandwich'
+            'bacon' => 'sandwich',
         ])->asJson()->put()->getbody();
 
         Assert::assertArraySubset([
             'args' => [
-                'foo' => 'bar'
+                'foo' => 'bar',
             ],
             'json' => [
                 'lorem' => 'ipsum',
-                'bacon' => 'sandwich'
-            ]
+                'bacon' => 'sandwich',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -270,17 +297,17 @@ class GuzzleApiTest extends TestCase
     {
         $response = $this->client->to('delete?foo=bar')->withBody([
             'lorem' => 'ipsum',
-            'bacon' => 'sandwich'
+            'bacon' => 'sandwich',
         ])->asJson()->delete()->getbody();
 
         Assert::assertArraySubset([
             'args' => [
-                'foo' => 'bar'
+                'foo' => 'bar',
             ],
             'json' => [
                 'lorem' => 'ipsum',
-                'bacon' => 'sandwich'
-            ]
+                'bacon' => 'sandwich',
+            ],
         ], (array)json_decode($response, true));
     }
 
@@ -288,7 +315,7 @@ class GuzzleApiTest extends TestCase
     function properly_obeys_specified_options()
     {
         $response = $this->client->to('redirect/5')->withOptions([
-            'allow_redirects' => false
+            'allow_redirects' => false,
         ])->asJson()->get();
 
         $this->assertEquals(302, $response->getStatusCode());
@@ -305,7 +332,7 @@ class GuzzleApiTest extends TestCase
 
         $this->client->debug($logFileResource)->to('post')->withBody([
             'foo' => 'bar',
-            'key' => 'value'
+            'key' => 'value',
         ])->asJson()->post()->getBody();
 
         fclose($logFileResource);
