@@ -24,7 +24,7 @@ class Client implements RequestInterface
     protected $options = [];
 
     /** @var string */
-    protected $format = 'json';
+    protected $format = 'body';
 
     /** @var bool|resource */
     protected $debug = false;
@@ -66,12 +66,12 @@ class Client implements RequestInterface
     /**
      * Specify the payload.
      *
-     * @param array $body
+     * @param mixed $body
      * @param array $headers
      * @param array $options
      * @return RequestInterface
      */
-    public function with(array $body = [], array $headers = [], array $options = []): RequestInterface
+    public function with($body = [], array $headers = [], array $options = []): RequestInterface
     {
         $this->body = $body;
         $this->headers = $headers;
@@ -83,10 +83,10 @@ class Client implements RequestInterface
     /**
      * Specify the body for the request.
      *
-     * @param array $body
+     * @param mixed $body
      * @return RequestInterface
      */
-    public function withBody(array $body = []): RequestInterface
+    public function withBody($body = []): RequestInterface
     {
         $this->body = $body;
 
@@ -99,9 +99,15 @@ class Client implements RequestInterface
      * @param array $body
      * @return RequestInterface
      */
-    public function addBody(array $body = []): RequestInterface
+    public function addBody(mixed $body = []): RequestInterface
     {
-        $this->body = array_merge($this->body, $body);
+        if(is_array($body) && is_array($this->body)) {
+            $this->body = array_merge($this->body, $body);
+        }
+    
+        if(is_string($body) && is_string($this->body)) {
+            $this->body .= $body;
+        }
 
         return $this;
     }
@@ -109,9 +115,9 @@ class Client implements RequestInterface
     /**
      * Get existing body.
      *
-     * @return array
+     * @return mixed
      */
-    public function getBody(): array
+    public function getBody()
     {
         return $this->body;
     }
@@ -208,6 +214,18 @@ class Client implements RequestInterface
     public function asJson(): RequestInterface
     {
         $this->format = 'json';
+
+        return $this;
+    }
+
+    /**
+     * Specify the body to be a string.
+     *
+     * @return RequestInterface
+     */
+    public function asString(): RequestInterface
+    {
+        $this->format = 'body';
 
         return $this;
     }

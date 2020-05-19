@@ -19,29 +19,29 @@ interface RequestInterface
     public function to(string $uri): RequestInterface;
 
     /**
-     * @param array $body
+     * @param mixed $body
      * @param array $headers
      * @param array $options
      * @return RequestInterface
      */
-    public function with(array $body = [], array $headers = [], array $options = []): RequestInterface;
+    public function with($body = [], array $headers = [], array $options = []): RequestInterface;
 
     /**
-     * @param array $body
+     * @param mixed $body
      * @return RequestInterface
      */
-    public function withBody(array $body = []): RequestInterface;
+    public function withBody($body = []): RequestInterface;
 
     /**
-     * @param array $body
+     * @param mixed $body
      * @return RequestInterface
      */
-    public function addBody(array $body = []): RequestInterface;
+    public function addBody($body = []): RequestInterface;
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getBody(): array;
+    public function getBody();
 
     /**
      * @param array $headers
