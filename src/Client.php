@@ -96,10 +96,10 @@ class Client implements RequestInterface
     /**
      * Append to existing body.
      *
-     * @param array $body
+     * @param mixed $body
      * @return RequestInterface
      */
-    public function addBody(mixed $body = []): RequestInterface
+    public function addBody($body = []): RequestInterface
     {
         if (is_array($body) && is_array($this->body)) {
             $this->body = array_merge($this->body, $body);
