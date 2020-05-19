@@ -88,6 +88,11 @@ interface RequestInterface
     public function asJson(): RequestInterface;
 
     /**
+     * @return RequestInterface
+     */
+    public function asString(): RequestInterface;
+
+    /**
      * @param bool $debug
      * @return RequestInterface
      */
