@@ -101,11 +101,11 @@ class Client implements RequestInterface
      */
     public function addBody(mixed $body = []): RequestInterface
     {
-        if(is_array($body) && is_array($this->body)) {
+        if (is_array($body) && is_array($this->body)) {
             $this->body = array_merge($this->body, $body);
         }
     
-        if(is_string($body) && is_string($this->body)) {
+        if (is_string($body) && is_string($this->body)) {
             $this->body .= $body;
         }
 
