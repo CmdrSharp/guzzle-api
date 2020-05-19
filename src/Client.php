@@ -24,7 +24,7 @@ class Client implements RequestInterface
     protected $options = [];
 
     /** @var string */
-    protected $format = 'body';
+    protected $format = 'json';
 
     /** @var bool|resource */
     protected $debug = false;
