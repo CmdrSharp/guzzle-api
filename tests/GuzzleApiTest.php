@@ -312,16 +312,6 @@ class GuzzleApiTest extends TestCase
     }
 
     /** @test */
-    function properly_obeys_specified_options()
-    {
-        $response = $this->client->to('redirect/5')->withOptions([
-            'allow_redirects' => false,
-        ])->asJson()->get();
-
-        $this->assertEquals(302, $response->getStatusCode());
-    }
-
-    /** @test */
     function properly_passes_debug_option()
     {
         $logFile = './guzzle_client_debug_test.log';
