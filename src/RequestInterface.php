@@ -96,7 +96,7 @@ interface RequestInterface
      * @param bool $debug
      * @return RequestInterface
      */
-    public function debug($debug = true): RequestInterface;
+    public function debug(bool $debug = true): RequestInterface;
 
     /**
      * @return ResponseInterface
