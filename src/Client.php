@@ -9,25 +9,25 @@ use Psr\Http\Message\ResponseInterface;
 class Client implements RequestInterface
 {
     /** @var GuzzleClient */
-    protected $client;
+    protected GuzzleClient $client;
 
     /** @var string */
-    protected $uri;
+    protected string $uri = '';
 
     /** @var array */
-    protected $body = [];
+    protected array $body = [];
 
     /** @var array */
-    protected $headers = [];
+    protected array $headers = [];
 
     /** @var array */
-    protected $options = [];
+    protected array $options = [];
 
     /** @var string */
-    protected $format = 'json';
+    protected string $format = 'json';
 
-    /** @var bool|resource */
-    protected $debug = false;
+    /** @var bool */
+    protected bool $debug = false;
 
     /**
      * Client constructor.
@@ -236,7 +236,7 @@ class Client implements RequestInterface
      * @param bool $debug
      * @return $this
      */
-    public function debug($debug = true): RequestInterface
+    public function debug(bool $debug = true): RequestInterface
     {
         $this->debug = $debug;
 
