@@ -11,6 +11,8 @@ This is an API for GuzzleHTTP. It aims to make using Guzzle a bit more clean and
 * PHP 7.4 or newer
 * Laravel [8.x](https://laravel.com/docs/8.x) or newer
 
+Note that the above requirements will always reflect the latest release. Older releases may support older PHP and Laravel versions.
+
 # Installation
 Via composer
 ```bash
