@@ -14,8 +14,8 @@ class Client implements RequestInterface
     /** @var string */
     protected string $uri = '';
 
-    /** @var array */
-    protected array $body = [];
+    /** @var mixed */
+    protected $body = [];
 
     /** @var array */
     protected array $headers = [];
