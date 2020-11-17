@@ -93,10 +93,10 @@ interface RequestInterface
     public function asString(): RequestInterface;
 
     /**
-     * @param bool $debug
+     * @param resource|bool $debug
      * @return RequestInterface
      */
-    public function debug(bool $debug = true): RequestInterface;
+    public function debug($debug = false): RequestInterface;
 
     /**
      * @return ResponseInterface

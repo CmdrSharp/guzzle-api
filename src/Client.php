@@ -26,8 +26,8 @@ class Client implements RequestInterface
     /** @var string */
     protected string $format = 'json';
 
-    /** @var bool */
-    protected bool $debug = false;
+    /** @var resource|bool */
+    protected $debug = false;
 
     /**
      * Client constructor.
@@ -233,10 +233,10 @@ class Client implements RequestInterface
     /**
      * Toggle debugging.
      *
-     * @param bool $debug
+     * @param resource|bool $debug
      * @return $this
      */
-    public function debug(bool $debug = true): RequestInterface
+    public function debug($debug = false): RequestInterface
     {
         $this->debug = $debug;
 
